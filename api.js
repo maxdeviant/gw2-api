@@ -1,9 +1,3 @@
-$(document).ready(function() {
-	var GW = new API();
-
-	GW.getRecipeDetails();
-});
-
 function API() {
 	this.HomeWorld = { id: "1008", name: "Jade Quarry" };
 
@@ -145,5 +139,12 @@ function API() {
 		} else {
 			console.log("Parameter required: recipe_id");
 		}
+	}
+
+	this.getBuild = function() {
+		// Get build
+		$.get("https://api.guildwars2.com/v1/build.json", function(data) {
+			console.log(data);
+		});
 	}
 }
