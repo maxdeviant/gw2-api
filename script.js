@@ -1,5 +1,5 @@
 $(document).ready(function() {
 	var GW = new API();
 
-	GW.getBuild();
+	console.log(GW.getMapFloor(1, 50));
 });
