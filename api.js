@@ -1,12 +1,16 @@
 $(document).ready(function() {
 	var GW = new API();
 
-	GW.getEvents(1008, 39, "2E14F9A2-49B4-403C-98E1-33B0AAACBBA7");
-	GW.getEventNames();
+	GW.getGuild();
 });
 
 function API() {
 	this.HomeWorld = { id: "1008", name: "Jade Quarry" };
+
+	// API template
+	// $.get("", function(data) {
+	// 	console.log(data);
+	// });
 
 	this.getWorlds = function() {
 		// Get worlds: Global
@@ -58,5 +62,22 @@ function API() {
 		$.get("https://api.guildwars2.com/v1/event_names.json", function(data) {
 			console.log(data);
 		});
+	}
+
+	this.getGuild = function(guild) {
+		// Get guild: ID
+		if (guild && guild.indexOf('-') > 1) {
+			$.get("https://api.guildwars2.com/v1/guild_details.json?guild_id=" + guild, function(data) {
+				console.log(data);
+			});
+		// Get guild: Name
+		} else if (guild) {
+			$.get("https://api.guildwars2.com/v1/guild_details.json?guild_name=" + guild, function(data) {
+				console.log(data);
+			});
+		// Error
+		} else {
+			console.log("Parameter required.");
+		}
 	}
 }
