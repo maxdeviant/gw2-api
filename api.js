@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	var GW = new API();
 
-	GW.getItems();
+	GW.getRecipeDetails();
 });
 
 function API() {
@@ -114,5 +114,36 @@ function API() {
 		$.get("https://api.guildwars2.com/v1/items.json", function(data) {
 			console.log(data);
 		});
+	}
+
+	this.getItemDetails = function(item_id) {
+		// Get item details
+		if (item_id) {
+			$.get("https://api.guildwars2.com/v1/item_details.json?item_id=" + item_id, function(data) {
+				console.log(data);
+			});
+		// Error
+		} else {
+			console.log("Parameter required: item_id");
+		}
+	}
+
+	this.getRecipes = function() {
+		// Get recipes: Global
+		$.get("https://api.guildwars2.com/v1/recipes.json", function(data) {
+			console.log(data);
+		});
+	}
+
+	this.getRecipeDetails = function(recipe_id) {
+		// Get recipe details
+		if (recipe_id) {
+			$.get("https://api.guildwars2.com/v1/recipe_details.json?recipe_id=" + recipe_id, function(data) {
+			console.log(data);
+		});
+		// Error
+		} else {
+			console.log("Parameter required: recipe_id");
+		}
 	}
 }
