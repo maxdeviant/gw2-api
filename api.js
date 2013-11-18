@@ -37,10 +37,10 @@ App.factory('API', function() {
 	API.Maps.getMaps = function(map_id) {
 		// Get map
 		if (map_id) {
-			return GET(baseURL + "maps.json?map_id=" + map_id);
+			return GET(baseURL + "maps.json?map_id=" + map_id).maps;
 		// Get maps: Global
 		} else {
-			return GET(baseURL + "maps.json");
+			return GET(baseURL + "maps.json").maps;
 		}
 	}
 
@@ -59,13 +59,13 @@ App.factory('API', function() {
 	API.Events.getEvents = function(world_id, map_id, event_id) {
 		// Get event
 		if (world_id && map_id && event_id) {
-			return GET(baseURL + "events.json?world_id=" + world_id + "&map_id=" + map_id + "&event_id=" + event_id);
+			return GET(baseURL + "events.json?world_id=" + world_id + "&map_id=" + map_id + "&event_id=" + event_id).events;
 		// Get events: Map
 		} else if (world_id && map_id && !event_id) {
-			return GET(baseURL + "events.json?world_id=" + world_id + "&map_id=" + map_id);
+			return GET(baseURL + "events.json?world_id=" + world_id + "&map_id=" + map_id).events;
 		// Get events: World
 		} else if (world_id && !map_id && !event_id) {
-			return GET(baseURL + "events.json?world_id=" + world_id);
+			return GET(baseURL + "events.json?world_id=" + world_id).events;
 		// Get events: Global
 		} else {
 			return GET(baseURL + "events.json");
@@ -80,10 +80,10 @@ App.factory('API', function() {
 	API.Events.getEventDetails = function(event_id) {
 		// Get event details
 		if (event_id) {
-			return GET(baseURL + "event_details.json?event_id=" + event_id);
+			return GET(baseURL + "event_details.json?event_id=" + event_id).events[event_id];
 		// Get event details: Global
 		} else {
-			return GET(baseURL + "event_details.json");
+			return GET(baseURL + "event_details.json").events;
 		}
 	}
 

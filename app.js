@@ -12,6 +12,14 @@ App.config(function($routeProvider) {
 		controller: 'Events',
 		templateUrl: 'partials/events.html'
 	})
+	.when('/events/:map_id', {
+		controller: 'EventsMap',
+		templateUrl: 'partials/events-map.html'
+	})
+	.when('/events/:map_id/:event_id', {
+		controller: 'EventDetails',
+		templateUrl: 'partials/event-details.html'
+	})
 	.when('/wvw', {
 		controller: 'WvW',
 		templateUrl: 'partials/wvw.html'

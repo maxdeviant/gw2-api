@@ -3,8 +3,28 @@ function Index($scope, API) {
 }
 
 function Events($scope, API) {
-	$scope.Events = API.Events.getEvents($('#world-list').val());
-	console.log($scope.Events);
+	var world_id = $('#world-list').val();
+
+	$scope.Events = API.Events.getEvents(world_id);
+	// console.log($scope.Events);
+
+	$scope.Maps = API.Maps.getMaps();
+	console.log($scope.Maps);
+}
+
+function EventsMap($scope, $routeParams, API) {
+	var world_id = $('#world-list').val();
+	var map_id = $routeParams.map_id;
+
+	$scope.Events = API.Events.getEvents(world_id, map_id);
+}
+
+function EventDetails($scope, $routeParams, API) {
+	var map_id = $routeParams.map_id;
+	var event_id = $routeParams.event_id;
+
+	$scope.EventDetails = API.Events.getEventDetails(event_id);
+	console.log($scope.EventDetails);
 }
 
 function WvW($scope, API) {

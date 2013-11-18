@@ -1,1 +1,8 @@
 Events
+
+<br>
+
+Zone:
+<select>
+	<option ng-repeat="Map in Maps | orderBy:'map_name'">{{Map.map_name}}</option>
+</select>
