@@ -48,7 +48,7 @@ App.factory('API', function() {
 		// Get map floor
 		if (continent_id && floor) {
 			return GET(baseURL + "map_floor.json?continent_id=" + continent_id + "&floor=");
-		// Error
+		// Error: Missing parameter
 		} else {
 			console.log("Parameters required: continent_id, floor");
 		}
@@ -96,7 +96,7 @@ App.factory('API', function() {
 		// Get guild: Name
 		} else if (guild) {
 			return GET(baseURL + "guild_details.json?guild_name=" + guild);
-		// Error
+		// Error: Missing parameter
 		} else {
 			console.log("Parameter required: guild_name or guild_id");
 		}
@@ -113,7 +113,7 @@ App.factory('API', function() {
 		// Get item details
 		if (item_id) {
 			return GET(baseURL + "item_details.json?item_id=" + item_id);
-		// Error
+		// Error: Missing parameter
 		} else {
 			console.log("Parameter required: item_id");
 		}
@@ -128,10 +128,32 @@ App.factory('API', function() {
 		// Get recipe details
 		if (recipe_id) {
 			return GET(baseURL + "recipe_details.json?recipe_id=" + recipe_id);
-		// Error
+		// Error: Missing parameter
 		} else {
 			console.log("Parameter required: recipe_id");
 		}
+	}
+
+	API.WvW = function(){};
+
+	API.WvW.getMatches = function() {
+		// Get matches: Global
+		return GET(baseURL + "wvw/matches.json");
+	}
+
+	API.WvW.getMatchDetails = function(match_id) {
+		// Get match details
+		if (match_id) {
+			return GET(baseURL + "wvw/match_details.json?match_id=" + match_id);
+		// Error: Missing parameter
+		} else {
+			console.log("Parameter required: match_id");
+		}
+	}
+
+	API.WvW.getObjectiveNames = function() {
+		// Get objective names
+		return GET(baseURL + "wvw/objective_names.json");
 	}
 
 	return API;

@@ -26,6 +26,12 @@
 				<li><a href="#/events">events</a></li>
 				<li><a href="#/items">items</a></li>
 			</ul>
+
+			<select id="world-list" ng-controller="Index">
+				<option ng-repeat="World in Worlds | orderBy:'name'" value="{{World.id}}">
+					{{World.name}}
+				</option>
+			</select>
 		</div>
 		<div class="content" ng-view></div>
 	</div>

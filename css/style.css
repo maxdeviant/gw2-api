@@ -52,6 +52,11 @@
 	opacity: .8;
 }
 
+#world-list {
+	margin: 40px 10px 0 0;
+	float: right;
+}
+
 p {
 	font-family: 'Cinzel Decorative', cursive;
 	font-weight: 400;

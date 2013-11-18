@@ -1,44 +1,13 @@
 function Index($scope, API) {
-	// var GW = new API();
-
 	$scope.Worlds = API.getWorlds();
-
-	console.log(API.Maps.getContinents());
-}
-
-function Worlds($scope, API) {
-	var GW = new API();
 }
 
 function Events($scope, API) {
-	var GW = new API();
-
-	function Foo() {
-
-	};
-
-	Foo.Events = function(){};
-
-	Foo.Events.bar = function() {
-		return "works!";
-	}
-
-	console.log(Foo.Events.bar());
-
-	// function Foo() {
-
-	// 	Foo.bar = function() {
-	// 		return "works!"
-	// 	}
-	// 	return {
-	// 		bar: bar
-	// 	};
-	// }
-
+	$scope.Events = API.Events.getEvents($('#world-list').val());
+	console.log($scope.Events);
 }
 
 function Items($scope, API) {
-	var GW = new API();
 
 	// $scope.Page = 1;
 
