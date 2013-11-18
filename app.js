@@ -8,5 +8,13 @@ App.config(function($routeProvider) {
 		controller: 'Index',
 		templateUrl: 'partials/index.html'
 	})
+	.when('/events', {
+		controller: 'Events',
+		templateUrl: 'partials/events.html'
+	})
+	.when('/items', {
+		controller: 'Items',
+		templateUrl: 'partials/items.html'
+	})
 	.otherwise({ redirectTo: '/' });
 });

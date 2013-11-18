@@ -1,0 +1,6 @@
+Items
+
+<input type="search" ng-model="query" placeholder="Search" />
+<ul>
+	<li ng-repeat="Item in Items | filter:query | orderBy:'name'">{{Item.name}}</li>
+</ul>
