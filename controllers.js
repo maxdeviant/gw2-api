@@ -10,17 +10,12 @@ function Events($scope, API) {
 function WvW($scope, API) {
 	$scope.Matches = API.WvW.getMatches().wvw_matches;
 
-	// console.log(API.WvW.getMatchDetails("2-1"));
-
-	console.log($scope.Matches);
+	// console.log($scope.Matches);
 }
 
-function WvWMatches($scope, $routeParams, API) {
+function WvWMatches($scope, $routeParams, API, API_Util) {
 	var match_id = $routeParams.match_id;
 	var matches = API.WvW.getMatches().wvw_matches;
-	var worlds = API.getWorlds();
-	console.log(matches);
-	console.log(match_id);
 
 	for (var i = 0; i < matches.length; i++) {
 		if (matches[i]['wvw_match_id'] === match_id) {
@@ -28,22 +23,10 @@ function WvWMatches($scope, $routeParams, API) {
 			$scope.MatchDetails = API.WvW.getMatchDetails(match_id);
 
 			$scope.Worlds = {
-				Blue: getWorldName(matches[i]['blue_world_id']),
-				Green: getWorldName(matches[i]['green_world_id']),
-				Red: getWorldName(matches[i]['red_world_id'])
+				Blue: API_Util.getWorldName(matches[i]['blue_world_id']),
+				Green: API_Util.getWorldName(matches[i]['green_world_id']),
+				Red: API_Util.getWorldName(matches[i]['red_world_id'])
 			};
-
-			// console.log($scope.Worlds);
-		}
-	}
-
-	console.log(worlds);
-
-	function getWorldName(id) {
-		for (var i = 0; i < worlds.length; i++) {
-			if (worlds[i]['id'] == id) {
-				return worlds[i]['name'];
-			}
 		}
 	}
 }
