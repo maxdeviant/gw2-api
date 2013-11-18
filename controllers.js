@@ -7,6 +7,14 @@ function Events($scope, API) {
 	console.log($scope.Events);
 }
 
+function WvW($scope, API) {
+	$scope.Matches = API.WvW.getMatches().wvw_matches;
+
+	// console.log(API.WvW.getMatchDetails("2-1"));
+
+	console.log($scope.Matches);
+}
+
 function Items($scope, API) {
 
 	// $scope.Page = 1;

@@ -156,6 +156,41 @@ App.factory('API', function() {
 		return GET(baseURL + "wvw/objective_names.json");
 	}
 
+	API.Assets = function(){};
+
+	API.Assets.getColors = function() {
+		return GET(baseURL + "colors.json");
+	}
+
+	API.Assets.getFiles = function() {
+		return GET(baseURL + "files.json");
+	}
+
+	API.Services = function(){};
+
+	API.Services.drawTile = function(continent_id, floor, zoom, x, y) {
+		// Draw tile
+		if (continent_id && floor && zoom && x && y) {
+			// TODO
+		// Error: Missing parameters
+		} else {
+			console.log("Parameter required: continent_id, floor, zoom, x, y");
+		}
+	}
+
+	API.Services.render = function(signature, file_id, format) {
+		// Render file
+		if (signature && file_id && format) {
+			// TODO
+		// Render file: Guess at format
+		} else if (signature && file_id && !format) {
+			// TODO
+		// Error: Missing parameters
+		} else {
+			console.log("Parameter required: signature, file_id, [format]");
+		}
+	}
+
 	return API;
 });
 

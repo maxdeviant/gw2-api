@@ -12,6 +12,10 @@ App.config(function($routeProvider) {
 		controller: 'Events',
 		templateUrl: 'partials/events.html'
 	})
+	.when('/wvw', {
+		controller: 'WvW',
+		templateUrl: 'partials/wvw.html'
+	})
 	.when('/items', {
 		controller: 'Items',
 		templateUrl: 'partials/items.html'
