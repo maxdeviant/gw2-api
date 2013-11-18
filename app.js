@@ -16,6 +16,10 @@ App.config(function($routeProvider) {
 		controller: 'WvW',
 		templateUrl: 'partials/wvw.html'
 	})
+	.when('/wvw/:match_id', {
+		controller: 'WvWMatches',
+		templateUrl: 'partials/wvw-matches.html'
+	})
 	.when('/items', {
 		controller: 'Items',
 		templateUrl: 'partials/items.html'
