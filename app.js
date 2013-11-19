@@ -1,6 +1,6 @@
 "use strict";
 
-var App = angular.module("App", ["ngRoute"]);
+var App = angular.module("App", ["ngRoute", "ngCookies"]);
 
 App.config(function($routeProvider) {
 	$routeProvider
@@ -33,4 +33,10 @@ App.config(function($routeProvider) {
 		templateUrl: 'partials/items.html'
 	})
 	.otherwise({ redirectTo: '/' });
+}).run(function(API, $cookieStore) {
+	API.getWorlds().success(function(data) {
+		API.getWorlds().success(function(data) {
+			$cookieStore.put('Worlds', data);
+		});
+	});
 });

@@ -1,9 +1,13 @@
-App.factory('API_Util', ['API', function(API) {
+// App.factory('API_Util', 
+
+var API_UtilFactory = function(API, $cookieStore) {
 	var worlds = [];
 
-	API.getWorlds().success(function(data) {
-		store(data);
-	});
+	if ($cookieStore.get('Worlds')) {
+		worlds = $cookieStore.get('Worlds');
+	} else {
+		console.log("Error: Worlds cookie not found.");
+	}
 
 	var API_Util = function(){};
 
@@ -14,13 +18,10 @@ App.factory('API_Util', ['API', function(API) {
 			}
 		}
 	}
-
-	// Stores response of AJAX call to worlds variable
-	// May need to expound on it if neccessary
-	// Right now it's a junk function
-	function store(value) {
-		worlds = value;
-	}
 	
 	return API_Util;
-}]);
+}
+
+API_UtilFactory.$inject = ['API', '$cookieStore'];
+
+App.factory('API_Util', API_UtilFactory);

@@ -1,9 +1,11 @@
 var defaultWorld = "2204";
 
-function Index($scope, API) {
-	API.getWorlds().success(function(data) {
-		$scope.Worlds = data;
-	});
+function Index($scope, API, $cookieStore) {
+	if ($cookieStore.get('Worlds')) {
+		$scope.Worlds = $cookieStore.get('Worlds');
+	} else {
+		console.log("Error: Worlds cookie not found");
+	}
 }
 
 function Events($scope, API) {
@@ -87,6 +89,6 @@ function WvWMatches($scope, $routeParams, API, API_Util) {
 
 function Items($scope, API) {
 	API.Items.getItems().success(function(data) {
-		$scope.Items = data.items;
+		// $scope.Items = data.items;
 	});
 }
