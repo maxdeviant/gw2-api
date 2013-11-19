@@ -16,6 +16,12 @@ function Events($scope, API) {
 	});
 
 	API.Maps.getMaps().success(function(data) {
+		var keys = Object.keys(data.maps);
+
+		for (var i = 0; i < keys.length; i++) {
+			data.maps[keys[i]].map_id = keys[i];
+		}
+
 		$scope.Maps = data.maps;
 	});
 }

@@ -1,5 +1,3 @@
-// App.factory('API_Util', 
-
 var API_UtilFactory = function(API, $cookieStore) {
 	var worlds = [];
 

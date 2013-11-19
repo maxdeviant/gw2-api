@@ -3,6 +3,12 @@ Events
 <br>
 
 Zone:
-<select>
-	<option ng-repeat="Map in Maps | orderBy:'map_name'">{{Map.map_name}}</option>
-</select>
+<input type="search" ng-model="query" placeholder="Search" />
+<ul>
+	<li ng-repeat="Map in Maps | filter:query">
+		<a href="#/events/{{Map.map_id}}">{{Map.map_name}}</a>
+	</li>
+</ul>
+<!-- <select>
+	<option ng-repeat="Map in Maps | orderBy: 'map_name' | filter: query">{{Map.map_name}}</option>
+</select> -->
