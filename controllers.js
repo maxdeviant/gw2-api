@@ -1,79 +1,84 @@
+var defaultWorld = "2204";
+
 function Index($scope, API) {
-	$scope.Worlds = API.getWorlds();
+	API.getWorlds().success(function(data) {
+		$scope.Worlds = data;
+	});
 }
 
 function Events($scope, API) {
-	var world_id = $('#world-list').val();
+	var world_id = $('#world-list').val() || defaultWorld;
 
-	$scope.Events = API.Events.getEvents(world_id);
-	// console.log($scope.Events);
+	API.Events.getEvents(world_id).success(function(data) {
+		$scope.Events = data.events;
+	});
 
-	$scope.Maps = API.Maps.getMaps();
-	console.log($scope.Maps);
+	API.Maps.getMaps().success(function(data) {
+		$scope.Maps = data.maps;
+	});
 }
 
 function EventsMap($scope, $routeParams, API) {
-	var world_id = $('#world-list').val();
+	var world_id = $('#world-list').val() || defaultWorld;
 	var map_id = $routeParams.map_id;
 
-	$scope.Events = API.Events.getEvents(world_id, map_id);
+	API.Events.getEvents(world_id, map_id).success(function(data) {
+		$scope.Events = data.events;
+	});
+
+	// $scope.Events = API.Events.getEvents(world_id, map_id);
 }
 
 function EventDetails($scope, $routeParams, API) {
+	var world_id = $('#world-list').val() || defaultWorld;
 	var map_id = $routeParams.map_id;
 	var event_id = $routeParams.event_id;
 
-	$scope.EventDetails = API.Events.getEventDetails(event_id);
-	console.log($scope.EventDetails);
+	API.Events.getEvents(world_id, map_id, event_id).success(function(data) {
+		$scope.Event = data.events[0];
+	});
+
+	API.Events.getEventDetails(event_id).success(function(data) {
+		$scope.EventDetails = data.events[event_id];
+	});
 }
 
 function WvW($scope, API) {
-	$scope.Matches = API.WvW.getMatches().wvw_matches;
+	API.WvW.getMatches().success(function(data) {
+		$scope.Matches = data.wvw_matches;
+	});
+
+	// $scope.Matches = API.WvW.getMatches().wvw_matches;
 
 	// console.log($scope.Matches);
 }
 
 function WvWMatches($scope, $routeParams, API, API_Util) {
 	var match_id = $routeParams.match_id;
-	var matches = API.WvW.getMatches().wvw_matches;
 
-	for (var i = 0; i < matches.length; i++) {
-		if (matches[i]['wvw_match_id'] === match_id) {
-			$scope.Match = matches[i];
-			$scope.MatchDetails = API.WvW.getMatchDetails(match_id);
+	API.WvW.getMatches().success(function(data) {
+		var matches = data.wvw_matches;
 
-			$scope.Worlds = {
-				Blue: API_Util.getWorldName(matches[i]['blue_world_id']),
-				Green: API_Util.getWorldName(matches[i]['green_world_id']),
-				Red: API_Util.getWorldName(matches[i]['red_world_id'])
-			};
+		for (var i = 0; i < matches.length; i++) {
+			if (matches[i]['wvw_match_id'] === match_id) {
+				$scope.Match = matches[i];
+
+				API.WvW.getMatchDetails(match_id).success(function(data) {
+					$scope.MatchDetails = data;
+				});
+
+				$scope.Worlds = {
+					Blue: API_Util.getWorldName(matches[i]['blue_world_id']),
+					Green: API_Util.getWorldName(matches[i]['green_world_id']),
+					Red: API_Util.getWorldName(matches[i]['red_world_id'])
+				};
+			}
 		}
-	}
+	});
 }
 
 function Items($scope, API) {
-
-	// $scope.Page = 1;
-
-	console.log(API.Items.getItems());
-
-	// var rawItems = GW.getItems().items;
-	// var detail = [];
-	// console.log(rawItems);
-
-	// console.log(Math.round(rawItems.length / 100));
-
-	// for (var i = 0; i < 10; i++) {
-	// 	// detail.push({ id: rawItems[i], name: GW.getItemDetails(rawItems[i]).name });
-	// 	detail.push(GW.getItemDetails(rawItems[i]));
-	// }
-	// console.log(detail);
-
-	// $scope.Items = detail;
-	// console.log(detail);
-	// // $scope.Items = rawItems.slice(0, 99);
-
-	// $scope.search = function(item) {
-	// 	//GW.getItemDetails();
-	// }
+	API.Items.getItems().success(function(data) {
+		// $scope.Items = data.items;
+	});
 }
