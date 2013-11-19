@@ -1,5 +1,9 @@
 WvW
 
+<input type="search" ng-model="query" placeholder="Search" />
+
 <ul>
-	<li ng-repeat="Match in Matches"><a href="#wvw/{{Match.wvw_match_id}}">{{Match.wvw_match_id}}</a></li>
+	<li ng-repeat="Match in Matches | filter:query">
+		<a href="#wvw/{{Match.wvw_match_id}}">{{Match.Worlds.Blue}} vs {{Match.Worlds.Green}} vs {{Match.Worlds.Red}}</a>
+	</li>
 </ul>

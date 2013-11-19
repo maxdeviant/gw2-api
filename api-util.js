@@ -1,5 +1,5 @@
 App.factory('API_Util', ['API', function(API) {
-	var worlds;
+	var worlds = [];
 
 	API.getWorlds().success(function(data) {
 		store(data);

@@ -25,8 +25,6 @@ function EventsMap($scope, $routeParams, API) {
 	API.Events.getEvents(world_id, map_id).success(function(data) {
 		$scope.Events = data.events;
 	});
-
-	// $scope.Events = API.Events.getEvents(world_id, map_id);
 }
 
 function EventDetails($scope, $routeParams, API) {
@@ -43,14 +41,24 @@ function EventDetails($scope, $routeParams, API) {
 	});
 }
 
-function WvW($scope, API) {
+function WvW($scope, API, API_Util) {
 	API.WvW.getMatches().success(function(data) {
-		$scope.Matches = data.wvw_matches;
+		var matches = data.wvw_matches;
+
+		for (var i = 0; i < matches.length; i++) {
+			matches[i].Worlds = {
+				Blue: API_Util.getWorldName(matches[i].blue_world_id),
+				Green: API_Util.getWorldName(matches[i].green_world_id),
+				Red: API_Util.getWorldName(matches[i].red_world_id)
+			};
+		}
+
+		$scope.Matches = matches;
 	});
 
-	// $scope.Matches = API.WvW.getMatches().wvw_matches;
-
-	// console.log($scope.Matches);
+	$scope.getWorldName = function(world_id) {
+		return API_Util.getWorldName(world_id);
+	}
 }
 
 function WvWMatches($scope, $routeParams, API, API_Util) {
@@ -79,6 +87,6 @@ function WvWMatches($scope, $routeParams, API, API_Util) {
 
 function Items($scope, API) {
 	API.Items.getItems().success(function(data) {
-		// $scope.Items = data.items;
+		$scope.Items = data.items;
 	});
 }
