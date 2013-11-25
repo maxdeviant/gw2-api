@@ -35,8 +35,10 @@ App.config(function($routeProvider) {
 	.otherwise({ redirectTo: '/' });
 }).run(function(API, $cookieStore) {
 	API.getWorlds().success(function(data) {
-		API.getWorlds().success(function(data) {
-			$cookieStore.put('Worlds', data);
-		});
+		$cookieStore.put('Worlds', data);
+	});
+
+	API.Items.getItems().success(function(data) {
+		$cookieStore.put('Items', data.items);
 	});
 });

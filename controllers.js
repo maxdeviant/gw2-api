@@ -22,6 +22,12 @@ function Events($scope, API) {
 			data.maps[keys[i]].map_id = keys[i];
 		}
 
+		console.log(data.maps);
+
+		API.Events.getEvents(world_id, 110).success(function(data) {
+			console.log(data);
+		});
+
 		$scope.Maps = data.maps;
 	});
 }
@@ -93,8 +99,14 @@ function WvWMatches($scope, $routeParams, API, API_Util) {
 	});
 }
 
-function Items($scope, API) {
+function Items($scope, API, API_Util) {
 	API.Items.getItems().success(function(data) {
-		// $scope.Items = data.items;
+		var items = data.items;
+
+		for (var i = 0; i < items.length; i++) {
+			console.log(API_Util.getItemName(items[i]));
+		}
+
+		$scope.Items = data.items;
 	});
 }

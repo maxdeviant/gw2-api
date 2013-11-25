@@ -2,8 +2,17 @@ WvW
 
 <input type="search" ng-model="query" placeholder="Search" />
 
-<ul>
-	<li ng-repeat="Match in Matches | filter:query">
-		<a href="#wvw/{{Match.wvw_match_id}}">{{Match.Worlds.Blue}} vs {{Match.Worlds.Green}} vs {{Match.Worlds.Red}}</a>
-	</li>
-</ul>
+<table>
+<tr>
+	<th></th>
+	<th>Blue World</th>
+	<th>Green World</th>
+	<th>Red World</th>
+</tr>
+<tr ng-repeat="Match in Matches | filter:query">
+	<td><a href="#wvw/{{Match.wvw_match_id}}">Details</a></td>
+	<td style="color: blue;">{{Match.Worlds.Blue}}</td>
+	<td style="color: green;">{{Match.Worlds.Green}}</td>
+	<td style="color: red;">{{Match.Worlds.Red}}</td>
+</tr>
+</table>
